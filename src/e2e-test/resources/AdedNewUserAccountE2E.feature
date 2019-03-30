@@ -6,13 +6,13 @@ Feature: User to create account
     When user submit registration form with attributes:
       | firstName | Pavlo                   |
       | lastName  | Shtohryn                      |
-      | email     | pavlo.shtogryn@gmail.com' |
+      | email     | pavlo.shtogryn@gmail.com |
       | password  | qwerty                       |
     Then user is logged in and located on home page
     And user model exists in database with attributes:
       | firstName | Pavlo                   |
       | lastName  | Shtohryn                      |
-      | email     | pavlo.shtogryn@gmail.com' |
+      | email     | pavlo.shtogryn@gmail.com |
       | password  | qwerty                       |
     When browser opened at http://localhost:8080/accounts/edit/new url
     And user submit create-update account form with attributes:
@@ -48,7 +48,7 @@ Feature: User to create account
   Scenario: Ability for user to login and view accounts
     Given browser opened at http://localhost:8080 url
     And user submit login form with attributes:
-      | email    | pavlo.shtogryn@gmail.com'|
+      | email    | pavlo.shtogryn@gmail.com|
       | password | qwerty                       |
     Then account details displayed on accounts grid page
       | accountCode | adidas-ftw-2                 |
@@ -57,7 +57,7 @@ Feature: User to create account
   Scenario: Ability for failed user to login and view accounts
     Given browser opened at http://localhost:8080 url
     And user submit login form with attributes:
-      | email    | pavlo.shtogryn@gmail.com' |
+      | email    | pavlo.shtogryn@gmail.com |
       | password | qwerty                   |
     Then account details displayed on accounts grid page
       | accountCode | adidas-ftw-2                 |

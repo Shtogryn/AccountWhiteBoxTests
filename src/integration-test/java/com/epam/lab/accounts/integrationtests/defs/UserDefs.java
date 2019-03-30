@@ -15,7 +15,7 @@ import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class UserDefs {
 
@@ -28,13 +28,13 @@ public class UserDefs {
     @Autowired
     private RegistrationPageController registrationPageController;
 
-    @Given("send user registration request with attributes:")
+    @Given("^send user registration request with attributes:")
     public void sendUserRegistrationRequest(final DataTable dataTable) {
         final UserRegistrationRequest userRegistrationRequest = CucumberUtils.toObject(dataTable, UserRegistrationRequest.class);
         registrationPageController.onRegisterRequest(userRegistrationRequest);
     }
 
-    @Then("user model exists in database with attributes:")
+    @Then("^user model exists in database with attributes:")
     public void userModelExistsInDatabaseWithAttributes(final DataTable dataTable) {
         final UserModel expectedUserModel = CucumberUtils.toObject(dataTable, UserModel.class);
         final UserModel actualUserModel = userService.getUserModelForEmail(expectedUserModel.getEmail());
@@ -45,7 +45,16 @@ public class UserDefs {
         assertEquals(actualUserModel.getPassword(), expectedUserModel.getPassword());
     }
 
-    @When("send user login request with attributes:")
+    @Then("^user model exists in database with failed attributes:")
+    public void userModelExistsInDatabaseWithFailedAttributes(final DataTable dataTable) {
+        final UserModel expectedUserModel = CucumberUtils.toObject(dataTable, UserModel.class);
+        final UserModel actualUserModel = userService.getUserModelForEmail(expectedUserModel.getEmail());
+
+        assertTrue(actualUserModel.getEmail().equals(expectedUserModel.getEmail()));
+        assertFalse(actualUserModel.getPassword().equals(expectedUserModel.getPassword()));
+    }
+
+    @When("^send user login request with attributes:")
     public void sendUserLoginRequestWithAttributes(final DataTable dataTable) {
         final UserLoginRequest userLoginRequest = CucumberUtils.toObject(dataTable, UserLoginRequest.class);
         loginPageController.onLoginRequest(userLoginRequest);

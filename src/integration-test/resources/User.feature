@@ -26,22 +26,22 @@ Feature: User operations feature
     When send user registration request with attributes:
       | firstName | Pavlo                |
       | lastName  | Shtohryn                   |
-      | email     | mykhailokozak@gmail.com |
-      | password  | 2222                    |
+      | email     | pavlo.shtogryn@gmail.com |
+      | password  | qwerty                    |
     Then user model exists in database with attributes:
-      | firstName | Mykhailo                |
-      | lastName  | Kozak                   |
-      | email     | mykhailokozak@gmail.com |
-      | password  | 2222                    |
+      | firstName | Pavlo                |
+      | lastName  | Shtohryn                   |
+      | email     | pavlo.shtogryn@gmail.com |
+      | password  | qwerty                    |
 
   Scenario: Ability for failed user to register
     When send user registration request with attributes:
-      | firstName | Mykhailo                |
-      | lastName  | Kozak                   |
-      | email     | mykhailokozak@gmail.com |
-      | password  | 2222                    |
+      | firstName | Pavlo                |
+      | lastName  | Shtohryn                   |
+      | email     | pavlo.shtogryn@gmail.com |
+      | password  | qwerty                    |
     Then user model exists in database with failed attributes:
-      | firstName | Mykhailo                |
-      | lastName  | Kozak                   |
-      | email     | mykhailokozak@gmail.com |
-      | password  | 5555                    |
+      | firstName | Pavlo                |
+      | lastName  | Shtohryn                   |
+      | email     | pavlo.shtogryn@gmail.com|
+      | password  | ytrewq                    |
